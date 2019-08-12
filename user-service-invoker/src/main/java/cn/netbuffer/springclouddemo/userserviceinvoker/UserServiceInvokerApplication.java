@@ -11,13 +11,13 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 public class UserServiceInvokerApplication {
 
-	@Bean
-	@LoadBalanced
-	public RestTemplate initRestTemplate(){
-		return new RestTemplate();
-	}
+    @Bean
+    @LoadBalanced
+    public RestTemplate initRestTemplate() {
+        return new RestTemplate();
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(UserServiceInvokerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(UserServiceInvokerApplication.class, args);
+    }
 }

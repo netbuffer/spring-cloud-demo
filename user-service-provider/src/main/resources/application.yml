@@ -11,3 +11,7 @@ eureka:
 
 server:
   port: 8700
+
+logging:
+  level:
+    root: INFO

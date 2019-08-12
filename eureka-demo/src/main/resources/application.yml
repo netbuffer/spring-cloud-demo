@@ -11,3 +11,7 @@ eureka:
     fetch-registry: false
   server:
     waitTimeInMsWhenSyncEmpty: 0
+
+logging:
+  level:
+    root: INFO
