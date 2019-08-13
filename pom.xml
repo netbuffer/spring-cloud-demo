@@ -61,6 +61,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>cn.netbuffer</groupId>
+            <artifactId>print-server-address</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>

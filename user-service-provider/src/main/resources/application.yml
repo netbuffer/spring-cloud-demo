@@ -15,3 +15,9 @@ server:
 logging:
   level:
     root: INFO
+
+print-server-address:
+  ignore-parent-context: true
+
+info:
+  app: ${spring.application.name}
