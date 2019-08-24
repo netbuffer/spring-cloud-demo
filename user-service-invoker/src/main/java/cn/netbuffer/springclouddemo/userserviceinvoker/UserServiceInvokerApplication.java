@@ -11,6 +11,11 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 public class UserServiceInvokerApplication {
 
+    /**
+     * ribbon客户端负载均衡实例
+     *
+     * @return
+     */
     @Bean
     @LoadBalanced
     public RestTemplate initRestTemplate() {
