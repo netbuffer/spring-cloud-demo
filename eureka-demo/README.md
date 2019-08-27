@@ -3,4 +3,5 @@
 
 ### 测试
 * java -jar eureka-demo.jar
+* java -jar eureka-demo.jar --spring.profiles.active=eureka-server-1
 * java -jar eureka-demo.jar --spring.profiles.active=eureka-server-2
