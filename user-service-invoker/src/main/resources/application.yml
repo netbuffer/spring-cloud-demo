@@ -8,6 +8,10 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
+hystrix:
+  metrics:
+    polling-interval-ms: 3000 #请求超时时间(秒)
+
 logging:
   level:
     root: INFO
