@@ -9,7 +9,6 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Service
@@ -18,17 +17,18 @@ public class UserService {
     @Resource
     private RestTemplate restTemplate;
 
+    /**
+     * hystrix注解实例配置,配置熔断策略等
+     *
+     * @param id
+     * @return
+     */
+    //    @HystrixCommand(fallbackMethod = "getUserFallback", commandProperties = {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")})
     @HystrixCommand(fallbackMethod = "getUserFallback")
     public String getUser(Long id) {
         int sleep = RandomUtils.nextInt(6);
         log.info("invoke getUser {},sleep {} s", id, sleep);
-        //模拟请求耗时测试熔断
-        try {
-            TimeUnit.SECONDS.sleep(sleep);
-        } catch (InterruptedException e) {
-            log.error("sleep error:{}", e.getMessage());
-        }
-        String r = restTemplate.getForObject("http://user-service-provider/user/" + id, String.class);
+        String r = restTemplate.getForObject("http://user-service-provider/user/" + id + "?s={1}", String.class, sleep);
         log.info("after getUser {},result:{}", id, r);
         return r;
     }

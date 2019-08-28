@@ -8,9 +8,14 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
+# hystrix全局配置
 hystrix:
-  metrics:
-    polling-interval-ms: 3000 #请求超时时间(秒)
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000 #请求超时时间(毫秒)
 
 logging:
   level:
