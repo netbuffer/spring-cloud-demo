@@ -9,16 +9,19 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 /**
  * @EnableCircuitBreaker hystrix断路器
+ * @EnableFeignClients feign声明式接口调用
  */
 @SpringBootApplication
-@EnableEurekaClient
+@EnableFeignClients
 @EnableHystrixDashboard
 @EnableCircuitBreaker
+@EnableEurekaClient
 @EnableDiscoveryClient
 public class UserServiceInvokerApplication {
 
