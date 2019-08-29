@@ -30,6 +30,12 @@ feign:
 logging:
   level:
     root: INFO
+    cn:
+      netbuffer:
+        springclouddemo:
+          userserviceinvoker:
+            client:
+              UserClient: DEBUG
 
 print-server-address:
   ignore-parent-context: true
