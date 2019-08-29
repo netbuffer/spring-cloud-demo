@@ -15,13 +15,17 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 3000 #请求超时时间(毫秒)
+            timeoutInMilliseconds: 6000 #请求超时时间(毫秒)
 
 ribbon:
   ConnectTimeout: 3000
   ReadTimeout: 5000
   eager-load:
     enabled: true
+
+feign:
+  hystrix:
+    enabled: true #开启feign熔断支持
 
 logging:
   level:
