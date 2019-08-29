@@ -26,6 +26,12 @@ ribbon:
 feign:
   hystrix:
     enabled: true #开启feign熔断支持
+  client:
+    config:
+      default:
+        loggerLevel: basic
+      user-service-provider:
+        loggerLevel: full
 
 logging:
   level:
