@@ -10,6 +10,7 @@ zuul:
     a:
       path: /a/**
       url: http://www.baidu.com/
+      sensitiveHeaders: #留空会将所有请求头转发到后续服务中
     user-service-provider: /up/**
     user-service-invoker: /ui/**
 
@@ -27,3 +28,10 @@ ribbon:
 
 print-server-address:
   ignore-parent-context: true
+
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
