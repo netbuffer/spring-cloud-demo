@@ -6,6 +6,8 @@ spring:
     name: zuul
 
 zuul:
+  debug:
+    request: true
   routes:
     a:
       path: /a/**
