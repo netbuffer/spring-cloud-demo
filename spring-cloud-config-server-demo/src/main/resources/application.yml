@@ -1,0 +1,18 @@
+server:
+  port: 8800
+
+spring:
+  application:
+    name: spring-cloud-config-server-demo
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/spring-cloud-samples/config-repo
+
+logging:
+  level:
+    root: INFO
+
+print-server-address:
+  ignore-parent-context: true

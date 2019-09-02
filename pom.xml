@@ -23,6 +23,7 @@
         <module>user-service-invoker</module>
         <module>eureka-demo</module>
         <module>zuul-demo</module>
+        <module>spring-cloud-config-server-demo</module>
     </modules>
 
     <properties>
