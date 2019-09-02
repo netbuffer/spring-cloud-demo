@@ -8,6 +8,8 @@ spring:
 zuul:
   debug:
     request: true
+  # 阻止将eureka中的微服务暴露在zuul网关中
+  ignored-services: "*"
   routes:
     a:
       path: /a/**
