@@ -35,9 +35,15 @@ public class ZuulFilterDemo extends ZuulFilter {
         log.info("debug request:{}", ctx.debugRequest());
         HttpServletRequest request = ctx.getRequest();
         log.info("method:{}", request.getMethod());
+        log.info("uri:{}", request.getRequestURI());
         log.info("url:{}", request.getRequestURL());
         log.info("query string:{}", request.getQueryString());
         log.info("getContextPath:{}", request.getContextPath());
+        if (request.getRequestURI().endsWith("deny")) {
+            ctx.setSendZuulResponse(false);
+            ctx.setResponseStatusCode(401);
+            ctx.setResponseBody("deny");
+        }
         return null;
     }
 }
