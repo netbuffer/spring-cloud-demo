@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    config:
+      profile: dev
+      label: master
+      uri: http://localhost:8800
+      request-connect-timeout: 3000
+      request-read-timeout: 3000
+      retry:
+        max-attempts: 3
+  application:
+    name: user-service-provider2

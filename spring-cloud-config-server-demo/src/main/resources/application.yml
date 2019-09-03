@@ -8,7 +8,11 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/spring-cloud-samples/config-repo
+          uri: https://github.com/netbuffer/spring-cloud-config-repo-demo
+          # git服务器超时时间
+          timeout: 3
+          # 强制更新git仓库覆盖本地
+          force-pull: true
 
 logging:
   level:
