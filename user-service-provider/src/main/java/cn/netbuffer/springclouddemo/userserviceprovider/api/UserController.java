@@ -24,6 +24,8 @@ public class UserController {
                 log.error("sleep error:{}", e.getMessage());
             }
         }
-        return "user:" + id;
+        String result="user:" + id;
+        log.info("return {}",result);
+        return result;
     }
 }

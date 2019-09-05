@@ -17,6 +17,7 @@ zuul:
       sensitiveHeaders: #留空会将所有请求头转发到后续服务中
     user-service-provider: /up/**
     user-service-invoker: /ui/**
+  retryable: true
 
 eureka:
   client:
@@ -26,9 +27,23 @@ eureka:
     hostname: ${spring.application.name}
     appname: ${spring.application.name}-app
 
+#  AbstractRibbonCommand
 ribbon:
+  ConnectTimeout: 1000 #默认1000
+  ReadTimeout: 3000 #默认1000
+  MaxAutoRetries: 3 #默认0
+  MaxAutoRetriesNextServer: 0 #默认1
   eager-load:
     enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            # 熔断超时时间应该大于ribbonTimeout = (ribbonReadTimeout + ribbonConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1);
+            timeoutInMilliseconds: 16500
 
 print-server-address:
   ignore-parent-context: true

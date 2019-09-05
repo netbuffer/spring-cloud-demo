@@ -12,15 +12,14 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2019/08/30
  */
 @Slf4j
-public class ZuulFilterDemo extends ZuulFilter {
+public class ZuulFilterDemo2 extends ZuulFilter {
     @Override
     public String filterType() {
-        return "pre";
+        return "post";
     }
 
     @Override
     public int filterOrder() {
-        //数值越大优先级越低
         return 2;
     }
 
@@ -32,19 +31,9 @@ public class ZuulFilterDemo extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         RequestContext ctx = RequestContext.getCurrentContext();
-        log.info("debug request:{}", ctx.debugRequest());
         HttpServletRequest request = ctx.getRequest();
-        log.info("method:{}", request.getMethod());
-        log.info("uri:{}", request.getRequestURI());
-        log.info("url:{}", request.getRequestURL());
-        log.info("query string:{}", request.getQueryString());
-        log.info("getContextPath:{}", request.getContextPath());
-        ctx.set("start",System.currentTimeMillis());
-        if (request.getRequestURI().endsWith("deny")) {
-            ctx.setSendZuulResponse(false);
-            ctx.setResponseStatusCode(401);
-            ctx.setResponseBody("deny");
-        }
+        long end= (long) ctx.get("start");
+        log.info("url:{},cost {} s", request.getRequestURL(),(System.currentTimeMillis()-end)/1000f);
         return null;
     }
 }
