@@ -20,10 +20,9 @@ public class MyFallbackProvider implements FallbackProvider {
     @Override
     public String getRoute() {
 //        为指定微服务指定fallback
-        return "user-service-provider";
+//        return "user-service-provider";
 //        为所有微服务提供fallback实现
-//        return "*";
-//        return null;
+        return "*";
     }
 
     @Override

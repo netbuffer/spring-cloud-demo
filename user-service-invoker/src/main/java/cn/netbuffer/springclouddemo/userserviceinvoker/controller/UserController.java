@@ -2,6 +2,7 @@ package cn.netbuffer.springclouddemo.userserviceinvoker.controller;
 
 import cn.netbuffer.springclouddemo.userserviceinvoker.client.UserClient;
 import cn.netbuffer.springclouddemo.userserviceinvoker.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,9 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @RestController
 @RequestMapping("/invoke")
 public class UserController {
@@ -37,8 +40,20 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public String getUser(@PathVariable("id") Long id) {
-        return restTemplate.getForObject("http://user-service-provider/user/" + id, String.class);
+    public String getUser(@PathVariable("id") Long id, Integer s) {
+        log.info("invoke get user {},sleep {} s", id, s);
+        if (s == null) {
+            return restTemplate.getForObject("http://user-service-provider/user/" + id, String.class);
+        } else {
+            try {
+                TimeUnit.SECONDS.sleep(s);
+            } catch (InterruptedException e) {
+                log.error("sleep InterruptedException", e);
+            }
+            String result = "user:" + id;
+            log.info("return {}", result);
+            return result;
+        }
     }
 
     @GetMapping("/hystrix/user/{id}")
