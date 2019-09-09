@@ -10,6 +10,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <packaging>jar</packaging>
+
     <artifactId>zuul-demo</artifactId>
     <name>zuul-demo</name>
     <description>zuul网关demo</description>

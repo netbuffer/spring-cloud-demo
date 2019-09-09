@@ -27,7 +27,7 @@ public class MyFallbackProvider implements FallbackProvider {
 
     @Override
     public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
-        log.error("fallback:",cause);
+        log.error("invoke {} service fallback:",route,cause);
         if (cause instanceof HystrixTimeoutException) {
             return response(HttpStatus.GATEWAY_TIMEOUT);
         } else {

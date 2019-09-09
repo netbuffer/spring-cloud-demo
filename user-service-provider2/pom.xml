@@ -9,6 +9,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <packaging>jar</packaging>
+
     <artifactId>user-service-provider2</artifactId>
     <name>user-service-provider2</name>
     <description>使用spring-cloud-config-server配置服务</description>

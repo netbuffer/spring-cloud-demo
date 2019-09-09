@@ -9,6 +9,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <packaging>jar</packaging>
+
     <artifactId>spring-cloud-config-server-demo</artifactId>
     <name>spring-cloud-config-server-demo</name>
 
