@@ -2,7 +2,7 @@
 * spring-boot2.1.7.RELEASE
 * [Greenwich.SR2](https://cloud.spring.io/spring-cloud-static/Greenwich.SR2/single/spring-cloud.html)
 * [spring-cloud-netflix](https://cloud.spring.io/spring-cloud-netflix/reference/html/)
-* [spring-cloud-ribbon](https://cloud.spring.io/spring-cloud-netflix/reference/html/#spring-cloud-ribbon)
+* [spring-cloud-ribbon](https://cloud.spring.io/spring-cloud-netflix/reference/html/#spring-cloud-ribbon) / [ribbon](https://github.com/Netflix/ribbon/wiki/Getting-Started)
 * [spring-cloud-feign](https://cloud.spring.io/spring-cloud-openfeign/reference/html/#spring-cloud-feign)
 * [https://github.com/Netflix/Hystrix/wiki](https://github.com/Netflix/Hystrix/wiki)
 * [https://github.com/Netflix/zuul/wiki/](https://github.com/Netflix/zuul/wiki/)

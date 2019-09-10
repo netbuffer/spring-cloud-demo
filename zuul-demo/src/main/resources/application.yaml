@@ -73,3 +73,8 @@ logging:
     root: INFO
     cn:
       netbuffer: DEBUG
+    org:
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: DEBUG

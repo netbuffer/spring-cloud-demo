@@ -42,6 +42,11 @@ logging:
           userserviceinvoker:
             client:
               UserClient: DEBUG
+    org:
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: DEBUG
 
 print-server-address:
   ignore-parent-context: true
