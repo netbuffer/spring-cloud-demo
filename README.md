@@ -7,6 +7,7 @@
 * [https://github.com/Netflix/Hystrix/wiki](https://github.com/Netflix/Hystrix/wiki)
 * [https://github.com/Netflix/zuul/wiki/](https://github.com/Netflix/zuul/wiki/)
 * [spring-cloud-config](https://cloud.spring.io/spring-cloud-static/spring-cloud-config/2.1.3.RELEASE/single/spring-cloud-config.html)
+* [spring-cloud-sleuth](https://cloud.spring.io/spring-cloud-static/spring-cloud-sleuth/2.1.2.RELEASE/single/spring-cloud-sleuth.html)
 
 # 微信扫码使用gitee工具
 ![gitee工具](https://s1.ax1x.com/2018/08/10/P60MMF.jpg)
