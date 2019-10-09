@@ -17,6 +17,8 @@ spring:
 logging:
   level:
     root: INFO
+    jdbc:
+      sqltiming: INFO
 
 print-server-address:
   ignore-parent-context: true
