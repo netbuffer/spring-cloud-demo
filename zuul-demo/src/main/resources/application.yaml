@@ -28,6 +28,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: false
+    enabled: true
   instance:
     hostname: ${spring.application.name}
     appname: ${spring.application.name}-app
@@ -56,6 +59,7 @@ hystrix:
         isolation:
           thread:
             # 熔断超时时间应该大于ribbonTimeout = (ribbonReadTimeout + ribbonConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1);
+            # (${ribbon.ReadTimeout}+${ribbon.ConnectTimeout})*(${ribbon.MaxAutoRetries}+1)*(${ribbon.MaxAutoRetriesNextServer}+1)+500
             timeoutInMilliseconds: 16500
     user-service-provider:
       execution:
