@@ -49,6 +49,7 @@ ribbon:
   ReadTimeout: 3000 #默认1000
   MaxAutoRetries: 3 #默认0
   MaxAutoRetriesNextServer: 0 #默认1
+  retryableStatusCodes: 502,503,504
   eager-load:
     enabled: true
 
@@ -84,6 +85,7 @@ logging:
       netbuffer: DEBUG
     org:
       springframework:
+        retry: DEBUG
         web:
           servlet:
             DispatcherServlet: DEBUG
