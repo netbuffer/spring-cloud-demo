@@ -2,9 +2,11 @@ package cn.netbuffer.zuuldemo.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import com.netflix.zuul.exception.ZuulException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.netflix.zuul.filters.Route;
+import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -13,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Slf4j
 public class ZuulFilterDemo extends ZuulFilter {
+
+    @Resource
+    private RouteLocator routeLocator;
 
     @Override
     public String filterType() {
@@ -31,8 +36,10 @@ public class ZuulFilterDemo extends ZuulFilter {
     }
 
     @Override
-    public Object run() throws ZuulException {
+    public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
+        Route route = routeLocator.getMatchingRoute(ctx.getRequest().getRequestURI());
+        log.info("match route:{}", route);
         log.info("debug request:{}", ctx.debugRequest());
         HttpServletRequest request = ctx.getRequest();
         log.info("method:{}", request.getMethod());
@@ -40,7 +47,7 @@ public class ZuulFilterDemo extends ZuulFilter {
         log.info("url:{}", request.getRequestURL());
         log.info("query string:{}", request.getQueryString());
         log.info("getContextPath:{}", request.getContextPath());
-        ctx.set("start",System.currentTimeMillis());
+        ctx.set("start", System.currentTimeMillis());
         if (request.getRequestURI().endsWith("deny")) {
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(401);
