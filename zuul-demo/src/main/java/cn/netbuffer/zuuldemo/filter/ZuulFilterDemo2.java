@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Slf4j
 public class ZuulFilterDemo2 extends ZuulFilter {
+
     @Override
     public String filterType() {
         return "post";
@@ -29,11 +30,11 @@ public class ZuulFilterDemo2 extends ZuulFilter {
     }
 
     @Override
-    public Object run() throws ZuulException {
+    public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        long end= (long) ctx.get("start");
-        log.info("url:{},cost {} s", request.getRequestURL(),(System.currentTimeMillis()-end)/1000f);
+        long end = (long) ctx.get("start");
+        log.info("url:{},cost {} s", request.getRequestURL(), (System.currentTimeMillis() - end) / 1000f);
         return null;
     }
 }
