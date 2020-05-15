@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Slf4j
 public class ZuulFilterDemo extends ZuulFilter {
+
     @Override
     public String filterType() {
         return "pre";

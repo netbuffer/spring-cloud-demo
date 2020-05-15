@@ -20,6 +20,11 @@ zuul:
       path: /a/**
       url: http://www.baidu.com/
       sensitiveHeaders: #留空会将所有请求头转发到后续服务中
+    b:
+      strip-prefix: false
+      path: /b/**
+      url: http://localhost:20000/
+      sensitiveHeaders:
     user-service-provider: /up/**
     user-service-invoker: /ui/**
   retryable: true

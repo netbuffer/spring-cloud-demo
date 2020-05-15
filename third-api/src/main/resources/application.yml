@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: third-api
+
+server:
+  port: 20000
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: DEBUG
+
+print-server-address:
+  ignore-parent-context: true
+
+info:
+  app: ${spring.application.name}

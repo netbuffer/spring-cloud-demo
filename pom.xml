@@ -24,6 +24,7 @@
         <module>eureka-demo</module>
         <module>zuul-demo</module>
         <module>spring-cloud-config-server-demo</module>
+        <module>third-api</module>
     </modules>
 
     <properties>
