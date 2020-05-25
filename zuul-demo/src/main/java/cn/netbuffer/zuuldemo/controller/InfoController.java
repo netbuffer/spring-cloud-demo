@@ -16,4 +16,5 @@ public class InfoController {
     public String getHystrixTimeout() {
         return hystrixTimeout;
     }
+
 }
