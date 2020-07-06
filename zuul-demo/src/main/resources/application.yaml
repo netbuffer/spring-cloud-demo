@@ -58,11 +58,18 @@ ribbon:
   eager-load:
     enabled: true
 
+# hystrix线程配置https://github.com/Netflix/Hystrix/wiki/Configuration#ThreadPool
 hystrix:
+  threadpool:
+    default:
+      coreSize: 1 #并发执行的最大线程数，默认10
+      maxQueueSize: 10 #BlockingQueue的最大队列数，默认值-1
+      queueSizeRejectionThreshold: 8 #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
   command:
     default:
       execution:
         isolation:
+          strategy: THREAD
           thread:
             # 熔断超时时间应该大于ribbonTimeout = (ribbonReadTimeout + ribbonConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1);
             # (${ribbon.ReadTimeout}+${ribbon.ConnectTimeout})*(${ribbon.MaxAutoRetries}+1)*(${ribbon.MaxAutoRetriesNextServer}+1)+500
@@ -70,6 +77,7 @@ hystrix:
     user-service-provider:
       execution:
         isolation:
+          strategy: THREAD
           thread:
             timeoutInMilliseconds: 6500
 
@@ -86,10 +94,16 @@ management:
 logging:
   level:
     root: INFO
+    com:
+      netflix:
+        hystrix: DEBUG
     cn:
       netbuffer: DEBUG
     org:
       springframework:
+        cloud:
+          netflix:
+            hystrix: DEBUG
         retry: DEBUG
         web:
           servlet:
