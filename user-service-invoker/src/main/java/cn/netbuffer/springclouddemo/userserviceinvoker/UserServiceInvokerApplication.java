@@ -2,10 +2,8 @@ package cn.netbuffer.springclouddemo.userserviceinvoker;
 
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
@@ -16,13 +14,12 @@ import org.springframework.web.client.RestTemplate;
 /**
  * @EnableCircuitBreaker hystrix断路器
  * @EnableFeignClients feign声明式接口调用
+ * @SpringCloudApplication已经集成@SpringBootApplication/@EnableDiscoveryClient/@EnableCircuitBreaker
  */
-@SpringBootApplication
 @EnableFeignClients
 @EnableHystrixDashboard
-@EnableCircuitBreaker
 @EnableEurekaClient
-@EnableDiscoveryClient
+@SpringCloudApplication
 public class UserServiceInvokerApplication {
 
     @Bean

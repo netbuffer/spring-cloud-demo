@@ -20,6 +20,7 @@
 
     <modules>
         <module>user-service-provider</module>
+        <module>user-service-provider2</module>
         <module>user-service-invoker</module>
         <module>eureka-demo</module>
         <module>zuul-demo</module>
