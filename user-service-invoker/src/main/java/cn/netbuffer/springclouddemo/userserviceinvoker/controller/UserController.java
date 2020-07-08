@@ -61,6 +61,11 @@ public class UserController {
         return userService.getUser(id);
     }
 
+    @GetMapping("/hystrix/user/wst/{id}")
+    public String getUserWithSeparateThreadPool(@PathVariable("id") Long id) {
+        return userService.getUserWithSeparateThreadPool(id);
+    }
+
     @GetMapping("/feign/user/{id}")
     public String fgetUser(@PathVariable("id") Long id, @RequestParam(required = false) Integer s) {
         return userClient.getUser(id, s);
