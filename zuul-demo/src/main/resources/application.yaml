@@ -65,6 +65,8 @@ hystrix:
       coreSize: 1 #并发执行的最大线程数，默认10
       maxQueueSize: 10 #BlockingQueue的最大队列数，默认值-1
       queueSizeRejectionThreshold: 8 #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
+    user-service-provider: #指定服务配置线程数
+      coreSize: 5
   command:
     default:
       execution:
