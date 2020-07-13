@@ -16,3 +16,4 @@ ribbon当配置了MaxAutoRetries时候,实际上是执行MaxAutoRetries+1次重�
 * http://localhost:8760/ui/invoke/user/1?s=3
 * http://localhost:8760/ui/invoke/user/1?s=4
 * `wget https://raw.githubusercontent.com/wiki/Netflix/Hystrix/images/hystrix-command-flow-chart.png –no-check-certificate`
+* http://localhost:8760/hystrix hystrix监控面板
