@@ -52,7 +52,7 @@ user-service-provider:
 ribbon:
   ConnectTimeout: 1000 #默认1000
   ReadTimeout: 3000 #默认1000
-  MaxAutoRetries: 3 #默认0
+  MaxAutoRetries: 0 #默认0
   MaxAutoRetriesNextServer: 0 #默认1
   retryableStatusCodes: 502,503,504
   eager-load:
@@ -71,7 +71,7 @@ hystrix:
     default:
       execution:
         isolation:
-          strategy: THREAD
+          strategy: THREAD #SEMAPHORE信号量模式，在调用线程上执行请求 ，zuul默认信号量模式;THREAD在单独的线程池中执行请求
           thread:
             # 熔断超时时间应该大于ribbonTimeout = (ribbonReadTimeout + ribbonConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1);
             # (${ribbon.ReadTimeout}+${ribbon.ConnectTimeout})*(${ribbon.MaxAutoRetries}+1)*(${ribbon.MaxAutoRetriesNextServer}+1)+500
@@ -79,9 +79,15 @@ hystrix:
     user-service-provider:
       execution:
         isolation:
-          strategy: THREAD
+          strategy: SEMAPHORE
           thread:
             timeoutInMilliseconds: 6500
+          semaphore:
+            maxConcurrentRequests: 500
+    user-service-invoker:
+      execution:
+        isolation:
+          strategy: THREAD
 
 print-server-address:
   ignore-parent-context: true
