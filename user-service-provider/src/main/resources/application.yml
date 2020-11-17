@@ -31,3 +31,9 @@ print-server-address:
 
 info:
   app: ${spring.application.name}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: service-registry
