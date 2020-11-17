@@ -28,6 +28,8 @@ hystrix:
             timeoutInMilliseconds: 6000 #请求超时时间(毫秒)
 
 ribbon:
+  # 服务列表缓存刷新间隔时间毫秒
+  ServerListRefreshInterval: 10000
   ConnectTimeout: 3000
   ReadTimeout: 5000
   eager-load:
