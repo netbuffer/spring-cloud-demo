@@ -15,6 +15,8 @@ eureka:
     appname: ${spring.application.name}
   server:
     waitTimeInMsWhenSyncEmpty: 0
+    # 返回最新注册信息的接口缓存刷新时间间隔毫秒
+    response-cache-update-interval-ms: 10000
 
 logging:
   level:
