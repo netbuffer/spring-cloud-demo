@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/info")
 public class InfoController {
 
-    @Value("${hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds}")
+    @Value("${hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds:null}")
     private String hystrixTimeout;
 
     @GetMapping("hystrixTimeout")
