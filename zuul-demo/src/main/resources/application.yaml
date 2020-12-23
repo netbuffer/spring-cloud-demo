@@ -28,6 +28,12 @@ zuul:
     user-service-provider: /up/**
     user-service-invoker: /ui/**
   retryable: true
+  ribbon-isolation-strategy: semaphore #默认semaphore,可以修改为thread模式
+  semaphore:
+    max-semaphores: 1
+  host:
+    max-total-connections: 2
+    max-per-route-connections: 1
 
 eureka:
   client:
@@ -59,35 +65,35 @@ ribbon:
     enabled: true
 
 # hystrix线程配置https://github.com/Netflix/Hystrix/wiki/Configuration#ThreadPool
-hystrix:
-  threadpool:
-    default:
-      coreSize: 1 #并发执行的最大线程数，默认10
-      maxQueueSize: 10 #BlockingQueue的最大队列数，默认值-1
-      queueSizeRejectionThreshold: 8 #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
-    user-service-provider: #指定服务配置线程数
-      coreSize: 5
-  command:
-    default:
-      execution:
-        isolation:
-          strategy: THREAD #SEMAPHORE信号量模式，在调用线程上执行请求 ，zuul默认信号量模式;THREAD在单独的线程池中执行请求
-          thread:
-            # 熔断超时时间应该大于ribbonTimeout = (ribbonReadTimeout + ribbonConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1);
-            # (${ribbon.ReadTimeout}+${ribbon.ConnectTimeout})*(${ribbon.MaxAutoRetries}+1)*(${ribbon.MaxAutoRetriesNextServer}+1)+500
-            timeoutInMilliseconds: 16500
-    user-service-provider:
-      execution:
-        isolation:
-          strategy: SEMAPHORE
-          thread:
-            timeoutInMilliseconds: 6500
-          semaphore:
-            maxConcurrentRequests: 500
-    user-service-invoker:
-      execution:
-        isolation:
-          strategy: THREAD
+#hystrix:
+#  threadpool:
+#    default:
+#      coreSize: 1 #并发执行的最大线程数，默认10
+#      maxQueueSize: 10 #BlockingQueue的最大队列数，默认值-1
+#      queueSizeRejectionThreshold: 8 #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝，默认值5
+#    user-service-provider: #指定服务配置线程数
+#      coreSize: 5
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: THREAD #SEMAPHORE信号量模式，在调用线程上执行请求 ，zuul默认信号量模式;THREAD在单独的线程池中执行请求
+#          thread:
+#            # 熔断超时时间应该大于ribbonTimeout = (ribbonReadTimeout + ribbonConnectTimeout) * (maxAutoRetries + 1) * (maxAutoRetriesNextServer + 1);
+#            # (${ribbon.ReadTimeout}+${ribbon.ConnectTimeout})*(${ribbon.MaxAutoRetries}+1)*(${ribbon.MaxAutoRetriesNextServer}+1)+500
+#            timeoutInMilliseconds: 16500
+#    user-service-provider:
+#      execution:
+#        isolation:
+#          strategy: SEMAPHORE
+#          thread:
+#            timeoutInMilliseconds: 6500
+#          semaphore:
+#            maxConcurrentRequests: 500
+#    user-service-invoker:
+#      execution:
+#        isolation:
+#          strategy: THREAD
 
 print-server-address:
   ignore-parent-context: true
