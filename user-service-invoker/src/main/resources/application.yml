@@ -24,6 +24,8 @@ hystrix:
     default:
       execution:
         isolation:
+#          设置信号量模式
+#          strategy: SEMAPHORE
           thread:
             timeoutInMilliseconds: 6000 #请求超时时间(毫秒)
 
@@ -54,6 +56,7 @@ logging:
           userserviceinvoker:
             client:
               UserClient: DEBUG
+              FeignClientRequestInterceptor: DEBUG
     org:
       springframework:
         web:
