@@ -27,6 +27,7 @@ logging:
         web:
           servlet:
             DispatcherServlet: DEBUG
+  file: user-service-invoker.log
 
 print-server-address:
   ignore-parent-context: true
@@ -38,4 +39,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: service-registry
+        include: "*"
