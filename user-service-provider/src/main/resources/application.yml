@@ -33,6 +33,8 @@ print-server-address:
   ignore-parent-context: true
 
 info:
+  tags:
+    environment: test
   app: ${spring.application.name}
 
 management:
