@@ -1,6 +1,12 @@
 # spring-cloud-demo
-> https://github.com/netbuffer/spring-cloud-demo  
-![](https://img.shields.io/badge/springboot-2.1.7.RELEASE-blue.svg?color=blue&message=)
+![](https://img.shields.io/static/v1?label=java&message=1.8&color=blue)
+![](https://img.shields.io/static/v1?label=sppring-boot&message=2.1.7.RELEASE&color=blue)
+![](https://img.shields.io/static/v1?label=sppring-cloud&message=Greenwich.SR2&color=brightgreen)
+![](https://img.shields.io/static/v1?label=lombok&message=1.18.8&color=blue)
+* https://github.com/netbuffer/spring-cloud-demo  
+* https://gitee.com/netbuffer/spring-cloud-demo
+
+### help
 ![spring-cloud](help/spring-cloud.png)
 * [Greenwich.SR2](https://cloud.spring.io/spring-cloud-static/Greenwich.SR2/single/spring-cloud.html)
 * [spring-cloud-netflix](https://cloud.spring.io/spring-cloud-netflix/reference/html/)
