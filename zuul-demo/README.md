@@ -18,6 +18,7 @@ ribbon当配置了MaxAutoRetries时候,实际上是执行MaxAutoRetries+1次重�
 * `wget https://raw.githubusercontent.com/wiki/Netflix/Hystrix/images/hystrix-command-flow-chart.png –no-check-certificate`
 * http://localhost:8760/hystrix hystrix监控面板
 * http://localhost:8760/actuator/hystrix.stream zuul hystrix监控数据源
+* http://localhost:8760/turbine.stream turbine集群监控端点
 
 ### help
 #### Hystrix Dashboard中的Thread pools项一直处于Loading状态

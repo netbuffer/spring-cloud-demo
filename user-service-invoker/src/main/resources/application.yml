@@ -11,7 +11,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "hystrix.stream"
+        include: "*"
 
 eureka:
   client:

@@ -25,4 +25,5 @@ public interface UserClient {
             return id + ":" + s + ":error at " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         }
     }
+
 }
