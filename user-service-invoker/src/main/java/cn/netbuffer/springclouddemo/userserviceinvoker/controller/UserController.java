@@ -8,7 +8,11 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -88,5 +92,17 @@ public class UserController {
     @GetMapping("/feign/user/{id}")
     public String fgetUser(@PathVariable("id") Long id, @RequestParam(required = false) Integer s) {
         return userClient.getUser(id, s);
+    }
+
+    @GetMapping("headers")
+    public Map<String, String> headers(HttpServletRequest httpServletRequest) {
+        //经过zuul后会携带x-forwarded-prefix
+        Enumeration<String> names = httpServletRequest.getHeaderNames();
+        Map<String, String> headers = new HashMap<>();
+        while (names.hasMoreElements()) {
+            String key = names.nextElement();
+            headers.put(key, httpServletRequest.getHeader(key));
+        }
+        return headers;
     }
 }
