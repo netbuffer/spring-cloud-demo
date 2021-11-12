@@ -30,7 +30,12 @@ public class UserController {
 
     @GetMapping("instances/{serviceId}")
     public List<ServiceInstance> getInstances(@PathVariable("serviceId") String serviceId) {
-        return discoveryClient.getInstances(serviceId);
+        List<ServiceInstance> instances = discoveryClient.getInstances(serviceId);
+        for (ServiceInstance instance : instances) {
+            //这里如果未设置prefer-ip-address: true，那么host将是主机名
+            log.info("host={} port={} uri={}", instance.getHost(), instance.getPort(), instance.getUri());
+        }
+        return instances;
     }
 
     @GetMapping("getOrder")
