@@ -48,6 +48,7 @@ public class ZuulFilterDemo extends ZuulFilter {
         log.info("query string:{}", request.getQueryString());
         log.info("getContextPath:{}", request.getContextPath());
         ctx.set("start", System.currentTimeMillis());
+        ctx.addZuulRequestHeader("your-header", "your-value");
         if (request.getRequestURI().endsWith("deny")) {
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(401);

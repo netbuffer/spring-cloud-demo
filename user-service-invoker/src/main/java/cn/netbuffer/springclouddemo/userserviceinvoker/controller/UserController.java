@@ -105,4 +105,11 @@ public class UserController {
         }
         return headers;
     }
+
+    @GetMapping("from")
+    public void from(HttpServletRequest httpServletRequest) {
+        if (httpServletRequest.getHeader("x-forwarded-prefix") != null) {
+            log.debug("from zuul");
+        }
+    }
 }
