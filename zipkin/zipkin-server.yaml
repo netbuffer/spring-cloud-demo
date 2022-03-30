@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  # https://github.com/openzipkin/zipkin/tree/master/zipkin-server#configuration
+  # https://github.com/openzipkin/zipkin/blob/master/zipkin-server/src/main/resources/zipkin-server-shared.yml
+  zipkin-server:
+    image: openzipkin/zipkin:2
+    hostname: zipkin-server
+    ports:
+      - "8900:9411"
+    container_name: zipkin-server
+    restart: "no"
+    environment:
+      QUERY_PORT: 9411
+      STORAGE_TYPE: mem
