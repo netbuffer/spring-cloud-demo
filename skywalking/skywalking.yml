@@ -1,0 +1,71 @@
+version: "3.9"
+services:
+  elasticsearch:
+    image: elasticsearch:7.17.2
+    hostname: elasticsearch7172
+    container_name: elasticsearch7172
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      discovery.type: "single-node"
+      bootstrap.memory_lock: "true"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+      TZ: Asia/Shanghai
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./elasticsearch/logs:/usr/share/elasticsearch/logs
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+
+  elasticsearch-head:
+    image: mobz/elasticsearch-head:5-alpine
+    hostname: elasticsearch-head
+    container_name: elasticsearch-head
+    ports:
+      - "9100:9100"
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
+
+  skywalking-oap:
+    image: apache/skywalking-oap-server:8.9.1
+    hostname: skywalking-oap
+    ports:
+      - "12800:12800"
+      - "11800:11800"
+    container_name: skywalking-oap
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
+    environment:
+      # https://skywalking.apache.org/docs/main/latest/en/setup/backend/backend-storage/#elasticsearch
+      SW_STORAGE: elasticsearch
+      SW_STORAGE_ES_CLUSTER_NODES: elasticsearch:9200
+      TZ: Asia/Shanghai
+      # The lifecycle of record data (in days). Record data includes traces, top N sample records, and logs
+      SW_CORE_RECORD_DATA_TTL: 7
+      # The lifecycle of metrics data (in days), including metadata. We recommend setting metricsDataTTL >= recordDataTTL
+      SW_CORE_METRICS_DATA_TTL: 7
+      SW_NAMESPACE: sw_
+      SW_STORAGE_ES_CONNECT_TIMEOUT: 30000
+
+  skywalking-ui:
+    image: apache/skywalking-ui:8.9.1
+    hostname: skywalking-ui
+    ports:
+      - "7000:8080"
+    container_name: skywalking-ui
+    restart: "always"
+    environment:
+      SW_OAP_ADDRESS: http://oap:12800
+      TZ: Asia/Shanghai
+    depends_on:
+      - skywalking-oap
+    links:
+      - "skywalking-oap:oap"
