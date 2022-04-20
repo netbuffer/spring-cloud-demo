@@ -54,6 +54,8 @@ services:
       SW_CORE_METRICS_DATA_TTL: 7
       SW_NAMESPACE: sw_
       SW_STORAGE_ES_CONNECT_TIMEOUT: 30000
+    volumes:
+      - ./ext-config/:/skywalking/ext-config
 
   skywalking-ui:
     image: apache/skywalking-ui:9.0.0
