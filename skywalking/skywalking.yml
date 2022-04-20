@@ -33,7 +33,7 @@ services:
       - elasticsearch
 
   skywalking-oap:
-    image: apache/skywalking-oap-server:8.9.1
+    image: apache/skywalking-oap-server:9.0.0
     hostname: skywalking-oap
     ports:
       - "12800:12800"
@@ -56,7 +56,7 @@ services:
       SW_STORAGE_ES_CONNECT_TIMEOUT: 30000
 
   skywalking-ui:
-    image: apache/skywalking-ui:8.9.1
+    image: apache/skywalking-ui:9.0.0
     hostname: skywalking-ui
     ports:
       - "7000:8080"

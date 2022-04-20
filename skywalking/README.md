@@ -1,9 +1,12 @@
 # skywalking
+* https://hub.docker.com/r/apache/skywalking-oap-server
+* https://hub.docker.com/r/apache/skywalking-ui
+* https://skywalking.apache.org/docs/main/v9.0.0/en/setup/backend/backend-setup/
 * https://hub.docker.com/_/elasticsearch
-* docker-compose -f skywalking.yml -p skywalking up
 * https://www.elastic.co/guide/en/elasticsearch/reference/7.5/docker.html
 
 ### reference
+* docker-compose -f skywalking.yml -p skywalking up
 * max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
 ```
 for windows
