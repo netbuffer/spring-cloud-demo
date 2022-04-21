@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# kill java applications : jcmd|awk '{print $1}'|xargs kill -9
 agent_path=your_agent_path
 scd_path=your_project_path
 echo start eureka
