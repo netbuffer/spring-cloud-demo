@@ -18,14 +18,7 @@ server:
   port: 8700
 
 logging:
-  level:
-    root: INFO
-    org:
-      springframework:
-        web:
-          servlet:
-            DispatcherServlet: DEBUG
-  file: user-service-invoker.log
+  config: classpath:logback-springboot.xml
 
 print-server-address:
   ignore-parent-context: true
