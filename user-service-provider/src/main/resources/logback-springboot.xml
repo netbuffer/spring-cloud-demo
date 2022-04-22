@@ -13,7 +13,7 @@
         </encoder>
     </appender>
 
-    <appender name="grpc-log" class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.log.GRPCLogClientAppender">
+    <appender name="grpc-log-appender" class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.log.GRPCLogClientAppender">
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
             <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.mdc.TraceIdMDCPatternLogbackLayout">
                 <Pattern>${log_pattern}</Pattern>
@@ -37,11 +37,9 @@
         <logger name="org.springframework.web" level="DEBUG"/>
     </springProfile>
 
-    <logger name="grpc-logger">
-        <appender-ref ref="grpc-log"/>
-    </logger>
 
     <root level="INFO">
+        <appender-ref ref="grpc-log-appender"/>
         <appender-ref ref="stdout"/>
         <appender-ref ref="fileAppender"/>
     </root>
