@@ -8,6 +8,7 @@
 ### reference
 * docker-compose -f skywalking.yml -p skywalking up
 * docker-compose -f skywalking.yml -p skywalking up -d
+* docker-compose -f skywalking.yml -p skywalking down
 * docker-compose -f skywalking.yml -p skywalking stop skywalking-oap skywalking-ui
 * docker-compose -f skywalking.yml -p skywalking start skywalking-oap skywalking-ui
 * max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
