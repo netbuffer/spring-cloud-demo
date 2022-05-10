@@ -65,6 +65,12 @@
             <version>1.8.0-beta4</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>apm-toolkit-logback-1.x</artifactId>
+            <version>8.10.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
