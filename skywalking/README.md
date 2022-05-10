@@ -27,3 +27,5 @@ chmod 777 logs
 2. docker-compose -f skywalking.yml -p skywalking start skywalking-oap
 3. docker-compose -f skywalking.yml -p skywalking start skywalking-ui
 ```
+
+![skywalking-api-link](../help/skywalking-api-link.png)
