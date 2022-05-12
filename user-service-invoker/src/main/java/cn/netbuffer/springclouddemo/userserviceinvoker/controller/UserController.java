@@ -79,6 +79,12 @@ public class UserController {
         }
     }
 
+    @PostMapping("user")
+    public Map addUser(@RequestBody Map user) {
+        log.info("addUser={}", user);
+        return userClient.add(user);
+    }
+
     @GetMapping("/hystrix/user/{id}")
     public String hgetUser(@PathVariable("id") Long id) {
         return userService.getUser(id);
