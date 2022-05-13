@@ -28,4 +28,8 @@ chmod 777 logs
 3. docker-compose -f skywalking.yml -p skywalking start skywalking-ui
 ```
 
+调用链路，网关->微服务->微服务
 ![skywalking-api-link](../help/skywalking-api-link.png)
+自定义trace端点
+![skywalking-custom-trace](../help/skywalking-custom-trace.png)
+![skywalking-custom-trace-data](../help/skywalking-custom-trace-data.png)
