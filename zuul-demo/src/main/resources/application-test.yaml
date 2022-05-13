@@ -1,0 +1,3 @@
+ribbon:
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 1
