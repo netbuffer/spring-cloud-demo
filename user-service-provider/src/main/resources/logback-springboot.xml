@@ -37,6 +37,7 @@
         <logger name="org.springframework.web" level="DEBUG"/>
     </springProfile>
 
+    <logger name="cn.netbuffer" level="DEBUG"/>
 
     <root level="INFO">
         <appender-ref ref="grpc-log-appender"/>
