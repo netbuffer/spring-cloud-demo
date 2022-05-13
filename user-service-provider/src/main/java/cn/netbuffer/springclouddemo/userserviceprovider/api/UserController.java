@@ -2,8 +2,11 @@ package cn.netbuffer.springclouddemo.userserviceprovider.api;
 
 import cn.netbuffer.springclouddemo.userserviceprovider.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +17,26 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @RequestMapping(value = "retry-test")
+    public ResponseEntity retryTest(HttpServletRequest httpServletRequest, @RequestParam(value = "code", defaultValue = "200") Integer code) {
+        log.debug("retryTest code={}", code);
+        HttpStatus httpStatus;
+        switch (code) {
+            case 200:
+                httpStatus = HttpStatus.OK;
+            case 502:
+                httpStatus = HttpStatus.BAD_GATEWAY;
+            case 503:
+                httpStatus = HttpStatus.SERVICE_UNAVAILABLE;
+            case 504:
+                httpStatus = HttpStatus.GATEWAY_TIMEOUT;
+            default:
+                httpStatus = HttpStatus.OK;
+        }
+        log.debug("retryTest return httpStatus={}", httpStatus);
+        return new ResponseEntity(httpServletRequest.getMethod() + " " + httpServletRequest.getRequestURI() + " queryString=" + httpServletRequest.getQueryString() + " return code=" + httpStatus.value(), httpStatus);
+    }
 
     @GetMapping(value = "/{id}")
     public String getUser(@PathVariable("id") Long id, Integer s) {
