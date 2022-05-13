@@ -25,12 +25,16 @@ public class UserController {
         switch (code) {
             case 200:
                 httpStatus = HttpStatus.OK;
+                break;
             case 502:
                 httpStatus = HttpStatus.BAD_GATEWAY;
+                break;
             case 503:
                 httpStatus = HttpStatus.SERVICE_UNAVAILABLE;
+                break;
             case 504:
                 httpStatus = HttpStatus.GATEWAY_TIMEOUT;
+                break;
             default:
                 httpStatus = HttpStatus.OK;
         }
