@@ -56,7 +56,8 @@ ribbon:
   ReadTimeout: 3000 #默认1000
   MaxAutoRetries: 0 #默认0
   MaxAutoRetriesNextServer: 0 #默认1
-  retryableStatusCodes: 502,503,504
+  retryableStatusCodes: 404,502,503,504
+  OkToRetryOnAllOperations: false
   eager-load:
     enabled: true
 
