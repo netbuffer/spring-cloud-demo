@@ -6,7 +6,7 @@ scd_path=your_project_path
 service_name_prefix=-Dskywalking.agent.service_name=scd::
 instance_name_param=-Dskywalking.agent.instance_name=scd
 backend_service_param=-Dskywalking.collector.backend_service=localhost:11800
-extra_param="-Dskywalking.trace.ignore_path=/actuator/**,/ -Dskywalking.plugin.jdbc.trace_sql_parameters=true -Dskywalking.plugin.springmvc.collect_http_params=true -Dskywalking.plugin.httpclient.collect_http_params=true"
+extra_param="-Dskywalking.trace.ignore_path=/actuator/**,/,/eureka/** -Dskywalking.plugin.jdbc.trace_sql_parameters=true -Dskywalking.plugin.springmvc.collect_http_params=true -Dskywalking.plugin.httpclient.collect_http_params=true"
 javaagent_param=-javaagent:$agent_path/skywalking-agent.jar
 common_param="$instance_name_param $backend_service_param $extra_param $javaagent_param"
 
