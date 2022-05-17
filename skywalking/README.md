@@ -26,6 +26,9 @@ chmod 777 logs
 1. docker-compose -f skywalking.yml -p skywalking start elasticsearch
 2. docker-compose -f skywalking.yml -p skywalking start skywalking-oap
 3. docker-compose -f skywalking.yml -p skywalking start skywalking-ui
+* docker-compose -f skywalking.yml -p skywalking create skywalking-oap
+* docker-compose -f skywalking.yml -p skywalking start skywalking-oap
+
 ```
 
 调用链路，网关->微服务->微服务
