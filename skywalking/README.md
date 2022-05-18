@@ -22,12 +22,16 @@ chmod 777 elasticsearch
 chmod 777 config
 chmod 777 data
 chmod 777 logs
+chmod -R 777 prometheus
 
 1. docker-compose -f skywalking.yml -p skywalking start elasticsearch
 2. docker-compose -f skywalking.yml -p skywalking start skywalking-oap
 3. docker-compose -f skywalking.yml -p skywalking start skywalking-ui
 * docker-compose -f skywalking.yml -p skywalking create skywalking-oap
 * docker-compose -f skywalking.yml -p skywalking start skywalking-oap
+* docker-compose -f skywalking.yml -p skywalking rm skywalking-oap
+* docker-compose -f skywalking.yml -p skywalking create prometheus
+* docker-compose -f skywalking.yml -p skywalking start prometheus
 
 ```
 

@@ -32,6 +32,16 @@ services:
     links:
       - elasticsearch
 
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    container_name: prometheus
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/data:/prometheus
+
   skywalking-oap:
     image: apache/skywalking-oap-server:9.0.0
     hostname: skywalking-oap
@@ -44,6 +54,11 @@ services:
     links:
       - elasticsearch
     environment:
+      SW_TELEMETRY: prometheus
+      SW_TELEMETRY_PROMETHEUS_HOST: 127.0.0.1
+      SW_TELEMETRY_PROMETHEUS_PORT: 1234
+      SW_PROMETHEUS_FETCHER: default
+      SW_PROMETHEUS_FETCHER_ACTIVE: "true"
       # https://skywalking.apache.org/docs/main/latest/en/setup/backend/backend-storage/#elasticsearch
       SW_STORAGE: elasticsearch
       SW_STORAGE_ES_CLUSTER_NODES: elasticsearch:9200
