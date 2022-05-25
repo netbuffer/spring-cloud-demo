@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -63,4 +65,16 @@ public class UserController {
         log.info("receive user map={}", user);
         return userService.add(user);
     }
+
+    @GetMapping("headers")
+    public Map<String, String> headers(HttpServletRequest httpServletRequest) {
+        Enumeration<String> names = httpServletRequest.getHeaderNames();
+        Map<String, String> headers = new HashMap<>();
+        while (names.hasMoreElements()) {
+            String key = names.nextElement();
+            headers.put(key, httpServletRequest.getHeader(key));
+        }
+        return headers;
+    }
+
 }

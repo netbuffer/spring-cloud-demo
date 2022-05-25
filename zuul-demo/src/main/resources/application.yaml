@@ -49,6 +49,8 @@ user-service-provider:
     ReadTimeout: 5000
     MaxAutoRetries: 0
     MaxAutoRetriesNextServer: 0
+    # https://cloud.spring.io/spring-cloud-static/Greenwich.SR2/single/spring-cloud.html#_customizing_the_ribbon_client_by_setting_properties
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RetryRule
 
 #  AbstractRibbonCommand
 ribbon:
