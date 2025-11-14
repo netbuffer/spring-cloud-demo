@@ -1,13 +1,12 @@
 package cn.netbuffer.springclouddemo.userserviceinvoker.service;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -24,15 +23,14 @@ public class UserService {
      * @param id
      * @return
      */
-    //    @HystrixCommand(fallbackMethod = "getUserFallback", commandProperties = {@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")})
-    @HystrixCommand(fallbackMethod = "getUserFallback")
+    @CircuitBreaker(name = "userService", fallbackMethod = "getUserFallback")
     public String getUser(Long id) {
         String r = restTemplate.getForObject("http://user-service-provider/user/" + id, String.class);
         log.info("after getUser {},result:{}", id, r);
         return r;
     }
 
-    @HystrixCommand(fallbackMethod = "getUserFallback")
+    @CircuitBreaker(name = "userService", fallbackMethod = "getUserFallback")
     public String getUserRandomSleep(Long id) {
         int sleep = RandomUtils.nextInt(6);
         log.info("invoke getUser {},sleep {} s", id, sleep);
@@ -42,17 +40,11 @@ public class UserService {
     }
 
     /**
-     * HystrixThreadPoolProperties/HystrixCommandProperties/HystrixEventType
+     * 线程池隔离配置（Hystrix样例）在 Resilience4j 中通过配置文件控制，这里直接保持业务逻辑不变。
      * @param id
      * @return
      */
-    @HystrixCommand(fallbackMethod = "getUserFallback", threadPoolKey = "iwstp",
-            threadPoolProperties = {
-                    @HystrixProperty(name = "coreSize", value = "10"),
-//                    当前版本加maximumSize配置会出错
-//            @HystrixProperty(name = "maximumSize", value = "5"),
-                    @HystrixProperty(name = "maxQueueSize", value = "3")
-            })
+    @CircuitBreaker(name = "userService", fallbackMethod = "getUserFallback")
     public String getUserWithSeparateThreadPool(Long id) {
         int sleep = RandomUtils.nextInt(6);
         log.info("invoke getUser {},sleep {} s", id, sleep);
@@ -61,7 +53,7 @@ public class UserService {
         return r;
     }
 
-    public String getUserFallback(Long id) {
+    public String getUserFallback(Long id, Throwable ex) {
         log.error("getUserFallback {}", id);
         return id + " error at " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }

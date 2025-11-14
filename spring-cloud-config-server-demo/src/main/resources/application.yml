@@ -10,9 +10,18 @@ spring:
         git:
           uri: https://github.com/netbuffer/spring-cloud-config-repo-demo
           # git服务器超时时间
-          timeout: 3
+          timeout: 60
           # 强制更新git仓库覆盖本地
-          force-pull: true
+          force-pull: false
+          default-label: master
+          skip-ssl-validation: true
+          basedir: .env/spring-cloud-config/
+    inetutils:
+      ignored-interfaces:
+        - ".*vEthernet.*"
+        - ".*Hyper-V.*"
+        - ".*VirtualBox.*"
+        - ".*VMware.*"
 
 logging:
   level:

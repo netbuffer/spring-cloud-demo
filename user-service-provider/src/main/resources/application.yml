@@ -1,7 +1,13 @@
 spring:
   application:
     name: user-service-provider
-
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - ".*vEthernet.*"
+        - ".*Hyper-V.*"
+        - ".*VirtualBox.*"
+        - ".*VMware.*"
 eureka:
   client:
     serviceUrl:

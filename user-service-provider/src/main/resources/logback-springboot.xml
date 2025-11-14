@@ -38,6 +38,7 @@
     </springProfile>
 
     <logger name="cn.netbuffer" level="DEBUG"/>
+    <logger name="org.springframework.cloud.commons.util.InetUtils" level="TRACE"/>
 
     <root level="INFO">
         <appender-ref ref="grpc-log-appender"/>

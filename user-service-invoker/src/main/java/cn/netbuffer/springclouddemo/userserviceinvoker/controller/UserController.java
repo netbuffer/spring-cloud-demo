@@ -2,13 +2,14 @@ package cn.netbuffer.springclouddemo.userserviceinvoker.controller;
 
 import cn.netbuffer.springclouddemo.userserviceinvoker.client.UserClient;
 import cn.netbuffer.springclouddemo.userserviceinvoker.service.UserService;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;

@@ -1,0 +1,68 @@
+server:
+  port: 8760
+
+spring:
+  application:
+    name: gateway-demo
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+        - id: a
+          uri: http://www.baidu.com/
+          predicates:
+            - Path=/a/**
+          filters:
+            - StripPrefix=1
+        - id: b
+          uri: http://localhost:20000/
+          predicates:
+            - Path=/b/**
+          filters:
+            - PreserveHostHeader
+        - id: user-service-provider
+          uri: lb://user-service-provider
+          predicates:
+            - Path=/up/**
+          filters:
+            - StripPrefix=1
+        - id: user-service-invoker
+          uri: lb://user-service-invoker
+          predicates:
+            - Path=/ui/**
+          filters:
+            - StripPrefix=1
+      loadbalancer:
+        cache:
+          enabled: true
+    inetutils:
+      ignored-interfaces:
+        - ".*vEthernet.*"
+        - ".*Hyper-V.*"
+        - ".*VirtualBox.*"
+        - ".*VMware.*"
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+    enabled: true
+  instance:
+    hostname: ${spring.application.name}
+    prefer-ip-address: true
+    appname: ${spring.application.name}-app
+
+print-server-address:
+  ignore-parent-context: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  config: classpath:logback-springboot.xml

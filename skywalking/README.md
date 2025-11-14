@@ -36,7 +36,7 @@ chmod -R 777 prometheus
 ```
 
 调用链路，网关->微服务->微服务
-![skywalking-api-link](../help/skywalking-api-link.png)
+![skywalking-api-link](../help/Greenwich.SR2/skywalking-api-link.png)
 自定义trace端点
-![skywalking-custom-trace](../help/skywalking-custom-trace.png)
-![skywalking-custom-trace-data](../help/skywalking-custom-trace-data.png)
+![skywalking-custom-trace](../help/Greenwich.SR2/skywalking-custom-trace.png)
+![skywalking-custom-trace-data](../help/Greenwich.SR2/skywalking-custom-trace-data.png)

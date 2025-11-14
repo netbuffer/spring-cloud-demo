@@ -4,7 +4,13 @@ server:
 spring:
   application:
     name: eureka-server
-
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - ".*vEthernet.*"
+        - ".*Hyper-V.*"
+        - ".*VirtualBox.*"
+        - ".*VMware.*"
 eureka:
   client:
     register-with-eureka: false #不向eureka注册自己

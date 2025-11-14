@@ -1,0 +1,30 @@
+### Gateway: list routes
+GET http://localhost:8760/gw/routes
+
+### Gateway: route definitions
+GET http://localhost:8760/gw/properties
+
+### Gateway: external route (baidu) (StripPrefix=1)
+GET http://localhost:8760/a/search
+
+### Gateway: local route (port 20000)
+GET http://localhost:8760/b/test
+
+### Gateway -> user-service-provider (StripPrefix=1)
+GET http://localhost:8760/up/user/1?s=3
+
+### Gateway -> user-service-invoker (StripPrefix=1)
+GET http://localhost:8760/ui/invoke/user/1?s=3
+
+### Gateway GlobalFilter deny example
+GET http://localhost:8760/up/deny
+
+### Request dump via controller
+GET http://localhost:8760/request/dump
+Your-Header: hello
+
+### Actuator health
+GET http://localhost:8760/actuator/health
+
+### Read environment property via controller
+GET http://localhost:8760/info/environment/property?property=spring.application.name

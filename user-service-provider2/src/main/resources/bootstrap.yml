@@ -8,5 +8,11 @@ spring:
       request-read-timeout: 3000
       retry:
         max-attempts: 3
+    inetutils:
+      ignored-interfaces:
+        - ".*vEthernet.*"
+        - ".*Hyper-V.*"
+        - ".*VirtualBox.*"
+        - ".*VMware.*"
   application:
     name: user-service-provider2

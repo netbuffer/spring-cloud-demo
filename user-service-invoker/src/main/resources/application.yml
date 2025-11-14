@@ -4,6 +4,13 @@ server:
 spring:
   application:
     name: user-service-invoker
+  cloud:
+    inetutils:
+      ignored-interfaces:
+        - ".*vEthernet.*"
+        - ".*Hyper-V.*"
+        - ".*VirtualBox.*"
+        - ".*VMware.*"
 
 management:
   endpoints:
