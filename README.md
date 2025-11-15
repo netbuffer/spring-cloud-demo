@@ -23,6 +23,6 @@
 * docker run --rm -it -p 8761:8761 -p 8701:8701 -p 8700:8700 -p 8760:8760 -e TZ=Asia/Shanghai --name scd -h scd javawiki/spring-cloud-demo:v1.0.0 bash
 
 ### reference
-* java -Dskywalking.agent.service_name=scd::scd-eureka -Dskywalking.agent.instance_name=scd -Dskywalking.collector.backend_service=localhost:11800 -javaagent:your_absolute_path/skywalking-agent.jar -jar eureka-demo/target/eureka-demo.jar --spring.profiles.active=test
-* java -Dskywalking.agent.service_name=scd::scd-gateway -Dskywalking.agent.instance_name=scd -Dskywalking.collector.backend_service=localhost:11800 -javaagent:your_absolute_path/skywalking-agent.jar -jar spring-cloud-gateway-demo/target/spring-cloud-gateway-demo.jar --spring.profiles.active=test
-* java -Dskywalking.agent.service_name=scd::scd-usp -Dskywalking.agent.instance_name=scd -Dskywalking.collector.backend_service=localhost:11800 -javaagent:your_absolute_path/skywalking-agent.jar -jar user-service-provider/target/user-service-provider.jar --spring.profiles.active=test
+* java -jar eureka-demo/target/eureka-demo.jar --spring.profiles.active=test
+* java -jar spring-cloud-gateway-demo/target/spring-cloud-gateway-demo.jar --spring.profiles.active=test
+* java -jar user-service-provider/target/user-service-provider.jar --spring.profiles.active=test
