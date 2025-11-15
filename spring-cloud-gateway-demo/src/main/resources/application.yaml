@@ -35,6 +35,9 @@ spring:
             - StripPrefix=1
       loadbalancer:
         use404: false
+      httpclient:
+        connect-timeout: 3000
+        response-timeout: 10s
     inetutils:
       ignored-interfaces:
         - ".*vEthernet.*"
