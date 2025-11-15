@@ -11,48 +11,79 @@ spring:
         - ".*Hyper-V.*"
         - ".*VirtualBox.*"
         - ".*VMware.*"
+    loadbalancer:
+      cache:
+        enabled: true  # 开启LB结果缓存
+        ttl: 30s       # 缓存TTL，减轻注册中心压力
 
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "*"  # 便于本地调试观测
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
   instance:
-    prefer-ip-address: true
-
-# hystrix全局配置
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-#          设置信号量模式
-#          strategy: SEMAPHORE
-          thread:
-            timeoutInMilliseconds: 6000 #请求超时时间(毫秒)
-
-ribbon:
-  # 服务列表缓存刷新间隔时间毫秒
-  ServerListRefreshInterval: 10000
-  ConnectTimeout: 3000
-  ReadTimeout: 5000
-  eager-load:
-    enabled: true
+    prefer-ip-address: true  # 以IP注册，避免主机名解析问题
 
 feign:
-  hystrix:
-    enabled: true #开启feign熔断支持
+  circuitbreaker:
+    enabled: true  # 使用 Spring Cloud CircuitBreaker（底层适配 Resilience4j）
   client:
     config:
       default:
-        loggerLevel: basic
+        connectTimeout: 3000   # 连接超时(ms)
+        readTimeout: 5000      # 读取超时(ms)
+        loggerLevel: basic     # 调试建议 basic/full，生产建议 basic
       user-service-provider:
-        loggerLevel: full
+        loggerLevel: full      # 对关键下游打开更详细日志（仅限开发/排错）
+
+resilience4j:
+  timelimiter:
+    instances:
+      default:                 # 全局默认（兜底）
+        timeoutDuration: 6s    # 超过即超时，配合CB/重试使用
+      user-service-provider:    # 针对服务级：user-service-provider
+        timeoutDuration: 5s
+      "user-service-provider#getUser":  # 针对方法级（Feign默认命名：client#method）
+        timeoutDuration: 3s
+      "user-service-provider#add":
+        timeoutDuration: 2s
+  circuitbreaker:
+    instances:
+      default:                 # 全局默认（兜底）
+        slidingWindowSize: 20
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+      user-service-provider:    # 服务级策略：更敏感或更宽松按需配置
+        slidingWindowSize: 50
+        failureRateThreshold: 40
+        waitDurationInOpenState: 15s
+      "user-service-provider#getUser":  # 方法级：读操作通常更严格/更快失败
+        slidingWindowSize: 20
+        failureRateThreshold: 30
+        waitDurationInOpenState: 5s
+      "user-service-provider#add":      # 写操作：窗口更大、阈值略宽松
+        slidingWindowSize: 40
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+  retry:
+    instances:
+      default:                 # 全局默认（兜底）
+        maxAttempts: 3
+        waitDuration: 200ms
+      user-service-provider:    # 服务级：适度重试
+        maxAttempts: 2
+        waitDuration: 150ms
+      "user-service-provider#getUser":  # 读操作可适当多一次重试
+        maxAttempts: 3
+        waitDuration: 100ms
+      "user-service-provider#add":      # 写操作默认不建议重试（示例：仅1次或直接不配置）
+        maxAttempts: 1
+        waitDuration: 0ms
 
 logging:
   config: classpath:logback-springboot.xml

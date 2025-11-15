@@ -10,7 +10,7 @@ spring:
     gateway:
       routes:
         - id: a
-          uri: http://www.baidu.com/
+          uri: https://www.baidu.com/
           predicates:
             - Path=/a/**
           filters:

@@ -6,9 +6,11 @@
 * https://www.processon.com/view/5cde6469e4b0f0ee7b092044
 * hystrix舱壁模式
 
-### ribbon超时重试
-ribbon当配置了MaxAutoRetries时候,实际上是执行MaxAutoRetries+1次接口调用,重试的时候可以指定响应码为多少时重试;
-执行GET请求ConnectTimeout、ReadTimeout时会重试，post/put等操作默认是不会执行重试操作的
+### 负载与容错（2024.x）
+使用 Spring Cloud LoadBalancer + Resilience4j 取代 Ribbon/Hystrix：
+* 超时：在 Feign 中配置 `connectTimeout`、`readTimeout`
+* 负载：`spring.cloud.loadbalancer.*`（如缓存 TTL）
+* 熔断/重试/超时保护：`resilience4j.circuitbreaker|retry|timelimiter`
 
 ### test 
 * http://localhost:8760/gw/routes 查看当前Gateway路由

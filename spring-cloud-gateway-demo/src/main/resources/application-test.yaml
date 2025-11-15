@@ -1,8 +1,0 @@
-user-service-provider:
-  ribbon:
-    MaxAutoRetries: 1
-    MaxAutoRetriesNextServer: 1
-    
-ribbon:
-  MaxAutoRetries: 1
-  MaxAutoRetriesNextServer: 1
