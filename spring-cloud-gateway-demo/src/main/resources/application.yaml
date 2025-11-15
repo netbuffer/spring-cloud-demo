@@ -34,8 +34,7 @@ spring:
           filters:
             - StripPrefix=1
       loadbalancer:
-        cache:
-          enabled: true
+        use404: false
     inetutils:
       ignored-interfaces:
         - ".*vEthernet.*"

@@ -1,9 +1,9 @@
 # spring-cloud-demo
 ![](https://img.shields.io/static/v1?label=java&message=21&color=blue)
 ![](https://img.shields.io/static/v1?label=maven&message=3.9.6&color=blue)
-![](https://img.shields.io/static/v1?label=spring-boot&message=3.4.5&color=blue)
+![](https://img.shields.io/static/v1?label=spring-boot&message=3.4.7&color=blue)
 ![](https://img.shields.io/static/v1?label=spring-cloud&message=2024.0.2&color=brightgreen)
-![](https://img.shields.io/static/v1?label=lombok&message=1.18.34&color=blue)
+![](https://img.shields.io/static/v1?label=lombok&message=1.18.38&color=blue)
 
 * https://github.com/netbuffer/spring-cloud-demo  
 * https://gitee.com/netbuffer/spring-cloud-demo
@@ -17,7 +17,7 @@
 * [Resilience4j](https://resilience4j.readme.io/docs)
 * [Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/4.2.0/reference/html/)
 
-### Docker Image
+### Docker Image (deprecated)
 * https://hub.docker.com/r/javawiki/spring-cloud-demo
 * docker build -t javawiki/spring-cloud-demo:v1.0.0 .
 * docker run --rm -it -p 8761:8761 -p 8701:8701 -p 8700:8700 -p 8760:8760 -e TZ=Asia/Shanghai --name scd -h scd javawiki/spring-cloud-demo:v1.0.0 bash
